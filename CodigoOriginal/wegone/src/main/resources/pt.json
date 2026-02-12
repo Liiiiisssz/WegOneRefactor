@@ -1,0 +1,87 @@
+{
+    "welcome": "    -- Bem vindo(a) ao sistema de --\n    --Cadastro de Orientações WEG!--",
+
+    "menu1": "  |-- 1.  Cadastrar Orientação     --|",
+    "menu2": "  |-- 2.  Pesquisar Orientação     --|",
+    "menu3": "  |-- 3.  Editar Orientação        --|",
+    "menu4": "  |-- 4.  Excluir Orientação       --|",
+    "menu5": "  |-- 5. X ENCERRAR PROGRAMA X     --|",
+    "menu6": "  |-- 6.  MUDAR IDIOMA             --|",
+
+
+    "realizar": "  --O que deseja realizar?--",
+    "resposta": "  --Resposta:  ",
+    "return": "|-- 6.          VOLTAR AO INÍCIO                --|",
+    "invalid": "--  X Opção inválida! X  --",
+    "encerrar": "--  Encerrando Sistema  --",
+    "titulosCad": "--TITULOS CADASTRADOS NO SISTEMA--",
+    "codigosCad": "--LISTA DE CODIGOS CADASTRADOS--",
+
+
+
+
+
+    "manualOp": "|--  1. Manual de Operação                      --|",
+    "procedSeg": "|--  2. Procedimento de Segurança               --|",
+    "manutenRep": "|--  3. Manutenção e Reparos                    --|",
+    "testDiag": "|--  4. Testes e Diagnóstico                    --|",
+    "manualCOS": "|--  5. Manual de Conduta e Operações Setoriais --|",
+
+
+    "cadastro": "|--           CADASTRAR ORIENTAÇÃO              --|",
+    "pesquisa": "|--           PESQUISAR ORIENTAÇÃO              --|",
+    "edicao": "|--              EDITAR ORIENTAÇÃO              --|",
+    "exclusao": "|--             EXCLUIR ORIENTAÇÃO              --|",
+
+
+    "chooseCad": " -- Escolha o tipo de orientação a ser cadastrado --",
+    "choosePesq": " -- Escolha o tipo de orientação a ser pesquisado --",
+    "chooseTipoPesq": " -- Insira o tipo de pesquisa --",
+    "chooseEdit": " -- Escolha o tipo de orientação a ser editado --",
+    "chooseExcluir": " -- Escolha o tipo de orientação a ser excluido --",
+
+    
+    "pesqManualOp":     "|--         PESQUISAR MANUAL DE OPERAÇÃO        --|",
+    "pesqProcedSeg":    "|--     PESQUISAR PROCEDIMENTO DE SEGURANÇA     --|",
+    "pesqManutenRep":   "|--        PESQUISAR MANUTENÇÃO E REPAROS       --|",
+    "pesqTestDiag":     "|--        PESQUISAR TESTES E DIAGÓSTICOS       --|",
+    "pesqManualCOS1":   "|--         PESQUISAR MANUAL DE CONDUTA         --|",
+    "pesqManualCOS2":   "|--           E OPERAÇÕES SETORIAIS             --|",
+
+    "pesqTitulo":       "|-- 1. Título                                     |",
+    "pesqCodigo":       "|-- 2. Código                                     |",
+
+    
+    "tituloManualOp": "Título do Manual de Operação: ",
+    "conteudoManualOp": "Conteúdo do Manual de Operação: ",
+    "tituloManualCOS": "Título do Manual de Conduta e Operações setoriais: ",
+    "conteudoManualCOS": "Conteúdo do Manual de Conduta e Operações setoriais: ",
+    "tituloManutenRep": "Título do Manual de Manutenção e Reparos: ",
+    "conteudoManutenRep": "Conteúdo do Manual de Manutenção e Reparos: ",
+    "tituloProcedSeg": "Título do Procedimento de Segurança: ",
+    "conteudoProcedSeg": "Conteúdo do Procedimento de Segurança: ",
+    "tituloTestDiag": "Título do Teste Diagnóstico: ",
+    "conteudoTestDiag": "Conteúdo do Teste Diagnóstico: ",
+
+
+    "numeroMax": "Número máximo de manuais atingido!",
+    "tituloPesq": "Digite o título para pesquisa: ",
+    "encontrado": "Manual encontrado: ",
+    "nEncontrado": "Nenhum manual encontrado.",
+    "codigoPesq": "Digite o código a ser pesquisado: ",
+    "edit": "Digite o código do manual para edição: ",
+    "newTitulo": "Novo título: ",
+    "newConteudo": "Novo conteúdo: ",
+    "editSucesso": "Manual atualizado com sucesso!",
+    "excluir": "Digite o código do manual para exclusão: ",
+    "delSucesso": "Manual excluído com sucesso!",
+    "delNEncontrado": "Manual já foi excluído ou não foi encontrado.",
+    "enter": "Enter para voltar ao menu:",
+    "cadastroSucesso": "Orientação cadastrada com sucesso!",    
+
+
+    "invalid1a6": "Entrada inválida! Por favor, digite um número entre 1 e 6.",
+    "invalid1a2": "Entrada inválida! Por favor, digite um número entre 1 e 2.",
+    "invalido": "Entrada inválida!",
+    "entradaInvalid": "Entrada inválida! Por favor, digite um número."
+}

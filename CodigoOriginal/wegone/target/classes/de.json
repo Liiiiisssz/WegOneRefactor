@@ -1,0 +1,85 @@
+{
+    "welcome": "    -- Willkommen im System --\n    --WEG Anleitungserfassung!--",
+
+    "menu1": "  |-- 1.  Anleitung registrieren   --|",
+    "menu2": "  |-- 2.  Anleitung suchen         --|",
+    "menu3": "  |-- 3.  Anleitung bearbeiten     --|",
+    "menu4": "  |-- 4.  Anleitung löschen        --|",
+    "menu5": "  |-- 5. X PROGRAMM BEENDEN X      --|",
+    "menu6": "  |-- 6.  SPRACHE ÄNDERN           --|",
+
+
+    "realizar": "  --Was möchten Sie tun?--",
+    "resposta": "  --Antwort:  ",
+    "return": "|-- 6.          ZURÜCK ZUM START                --|",
+    "invalid": "--  X Ungültige Option! X  --",
+    "encerrar": "--  System wird beendet  --",
+    "titulosCad": "--IM SYSTEM REGISTRIERTE TITEL--",
+    "codigosCad": "--LISTE DER REGISTRIERTEN CODES--",
+
+
+    "manualOp": "|--  1. Bedienungsanleitung                     --|",
+    "procedSeg": "|--  2. Sicherheitsverfahren                    --|",
+    "manutenRep": "|--  3. Wartung und Reparaturen                 --|",
+    "testDiag": "|--  4. Tests und Diagnosen                     --|",
+    "manualCOS": "|-- 5. Verhaltens- und Bereichsrichtlinien      --|",
+
+
+    "cadastro": "|--            ANLEITUNG REGISTRIEREN           --|",
+    "pesquisa": "|--              ANLEITUNG SUCHEN               --|",
+    "edicao": "|--              ANLEITUNG BEARBEITEN           --|",
+    "exclusao": "|--             ANLEITUNG LÖSCHEN               --|",
+
+
+    "chooseCad": " -- Wählen Sie die Art der Anleitung zum Registrieren --",
+    "choosePesq": " -- Wählen Sie die Art der Anleitung zum Suchen --",
+    "chooseTipoPesq": " -- Geben Sie die Art der Suche ein --",
+    "chooseEdit": " -- Wählen Sie die Art der Anleitung zum Bearbeiten --",
+    "chooseExcluir": " -- Wählen Sie die Art der Anleitung zum Löschen --",
+
+
+    "pesqManualOp":   "|--         BEDIENUNGSANLEITUNG SUCHEN          --|",
+    "pesqProcedSeg":  "|--         SICHERHEITSVERFAHREN SUCHEN         --|",
+    "pesqManutenRep": "|--       WARTUNG UND REPARATUREN SUCHEN        --|",
+    "pesqTestDiag":   "|--         TESTS UND DIAGNOSEN SUCHEN          --|",
+    "pesqManualCOS1": "|--         VERHALTENSRICHTLINIEN SUCHEN        --|",
+    "pesqManualCOS2": "|--           UND BEREICHSRICHTLINIEN           --|",
+
+    "pesqTitulo": "|-- 1. Titel                                      |",
+    "pesqCodigo": "|-- 2. Code                                       |",
+
+
+    "tituloManualOp": "Titel des Bedienungshandbuchs:",
+    "conteudoManualOp": "Inhalt des Bedienungshandbuchs:",
+    "tituloManualCOS": "Titel des Verhaltens- und Bereichsbetriebshandbuchs: ",
+    "conteudoManualCOS": "Inhalt des Verhaltens- und Bereichsbetriebshandbuchs: ",
+    "tituloManutenRep": "Titel des Wartungs- und Reparaturhandbuchs: ",
+    "conteudoManutenRep": "Inhalt des Wartungs- und Reparaturhandbuchs: ",
+    "tituloProcedSeg": "Titel des Sicherheitsverfahrens: ",
+    "conteudoProcedSeg": "Inhalt des Sicherheitsverfahrens: ",
+    "tituloTestDiag": "Titel des Diagnosetests: ",
+    "conteudoTestDiag": "Inhalt des Diagnosetests: ",
+
+    
+
+    "numeroMax": "Maximale Anzahl von Handbüchern erreicht!",
+    "tituloPesq": "Titel zur Suche eingeben:",
+    "encontrado": "Handbuch gefunden:",
+    "nEncontrado": "Kein Handbuch gefunden.",
+    "codigoPesq": "Code zur Suche eingeben:",
+    "edit": "Code des Handbuchs zur Bearbeitung eingeben:",
+    "newTitulo": "Neuer Titel:",
+    "newConteudo": "Neuer Inhalt:",
+    "editSucesso": "Handbuch erfolgreich aktualisiert!",
+    "excluir": "Code des Handbuchs zur Löschung eingeben:",
+    "delSucesso": "Handbuch erfolgreich gelöscht!",
+    "delNEncontrado": "Handbuch wurde bereits gelöscht oder nicht gefunden.",
+    "enter": "Drücken Sie die Eingabetaste, um zum Menü zurückzukehren:",
+    "cadastroSucesso": "Beratung erfolgreich registriert!",
+
+
+    "invalid1a6": "Ungültige Eingabe! Bitte geben Sie eine Zahl zwischen 1 und 6 ein.",
+    "invalid1a2": "Ungültige Eingabe! Bitte geben Sie eine Zahl zwischen 1 und 2 ein.",
+    "invalido": "Ungültige Eingabe!",
+    "entradaInvalid": "Ungültige Eingabe! Bitte geben Sie eine Zahl ein."
+}
