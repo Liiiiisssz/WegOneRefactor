@@ -3,12 +3,9 @@ package br.com.senai.centroweg.wegone.util;
 import java.util.Scanner;
 
 public class Sc {
-    private final Scanner sc;
-    public Sc(Scanner sc) {
-        this.sc = sc;
-    }
+    private static final Scanner sc = new Scanner(System.in);
 
-    public int sc(){
+    public static int lerInt(){
         System.out.print("> ");
         String entrada = sc.nextLine();
         try{
@@ -16,5 +13,9 @@ public class Sc {
         } catch (NumberFormatException e){
             throw new RuntimeException(e.getMessage());
         }
+    }
+
+    public static String lerString(){
+        return sc.nextLine();
     }
 }
