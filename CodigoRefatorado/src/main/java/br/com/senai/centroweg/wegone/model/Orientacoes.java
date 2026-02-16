@@ -1,6 +1,10 @@
 package br.com.senai.centroweg.wegone.model;
 
 public class Orientacoes {
+    private int id;
+
+
+
     private String titulo;
     private String conteudo;
     private Categoria categoria;
@@ -9,6 +13,22 @@ public class Orientacoes {
         this.titulo = titulo;
         this.conteudo = conteudo;
         this.categoria = categoria;
+    }
+
+
+    public Orientacoes(int id, String titulo, String conteudo, Categoria categoria) {
+        this.id = id;
+        this.titulo = titulo;
+        this.conteudo = conteudo;
+        this.categoria = categoria;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitulo() {

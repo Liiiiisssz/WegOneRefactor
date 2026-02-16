@@ -1,12 +1,18 @@
 package br.com.senai.centroweg.wegone.service;
 
+import br.com.senai.centroweg.wegone.model.Categoria;
+import br.com.senai.centroweg.wegone.model.Orientacoes;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class manuaisImpls implements Manuais{
 
-    private List<Manual> listaManuais;
+    private List<Orientacoes> listaManuais;
 
-    public ManualServico() {
+    public manuaisImpls() {
         this.listaManuais = new ArrayList<>();
-        inicializarManuaisPadrao();
+         inicializarManuaisPadrao();
     }
 
     private void inicializarManuaisPadrao() {
@@ -19,23 +25,23 @@ public class manuaisImpls implements Manuais{
                 |_____________________________________________________________________|
                 """;
 
-        adicionarManual(new Manual(1, "Manual de operação de motores eletricos", textoMotor));
+        adicionarManual(new Orientacoes(1,"Manual de Testes", "Manual de operação de motores eletricos",Categoria.Manual_Operacoes ));
     }
 
     @Override
-    public void adicionarManual(Manual manual) {
+    public void adicionarManual(Orientacoes manual) {
         listaManuais.add(manual);
     }
 
     @Override
-    public List<Manual> listarTodos() {
+    public List<Orientacoes> listarTodos() {
         return new ArrayList<>(listaManuais);
     }
 
     @Override
-    public Manual buscarPorId(int id) {
+    public Orientacoes buscarPorId(int id) {
         return listaManuais.stream()
-                .filter(m -> m.getId() == id)
+                .filter(m -> m.getId() == 1)
                 .findFirst()
                 .orElse(null);
     }
