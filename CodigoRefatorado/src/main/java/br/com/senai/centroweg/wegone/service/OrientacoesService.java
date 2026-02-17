@@ -4,7 +4,7 @@ import br.com.senai.centroweg.wegone.model.Orientacoes;
 
 import java.util.List;
 
-public interface Manuais {
+public interface OrientacoesService {
 
         void adicionarManual(Orientacoes manual);
         List<Orientacoes> listarTodos();

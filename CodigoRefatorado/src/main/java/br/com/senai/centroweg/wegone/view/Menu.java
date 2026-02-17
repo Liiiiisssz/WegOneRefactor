@@ -13,19 +13,21 @@ public class Menu {
                  ______________________________
                 | 1.  Cadastrar Orientação     |
                 | 2.  Pesquisar Orientação     |
-                | 3.  Editar Orientação        |
-                | 4.  Excluir Orientação       |
+                | 3.  Exibir todas             |
+                | 4.  Editar Orientação        |
+                | 5.  Excluir Orientação       |
                 |------------------------------|
-                | 5. X ENCERRAR PROGRAMA X     |
+                | 6. X ENCERRAR PROGRAMA X     |
                 |______________________________|
                 """);
             int opcao = Sc.lerInt();
 
             opcoes.put(1, controller::cadastro);
             opcoes.put(2, controller::pesquisa);
-            opcoes.put(3, controller::editar);
-            opcoes.put(4, controller::excluir);
-            opcoes.put(5, () -> {
+            opcoes.put(3, controller::todas);
+            opcoes.put(4, controller::editar);
+            opcoes.put(5, controller::excluir);
+            opcoes.put(6, () -> {
                 System.out.println("Encerrando...");
                 System.exit(0);
             });
