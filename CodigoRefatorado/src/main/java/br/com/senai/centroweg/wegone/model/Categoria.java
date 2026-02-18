@@ -1,0 +1,9 @@
+package br.com.senai.centroweg.wegone.model;
+
+public enum Categoria {
+    MANUAL_CONDUTA_OPERACOES_SETORIAIS,
+    MANUAL_OPERACAO,
+    MANUAL_MANUTENCAO_REPAROS,
+    PROCEDIMENTOS_SEGURANCA,
+    TESTES_DIAGNOSTICOS
+}

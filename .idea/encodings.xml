@@ -3,5 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/CodigoOriginal/wegone/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/CodigoOriginal/wegone/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/CodigoRefatorado/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/CodigoRefatorado/src/main/resources" charset="UTF-8" />
   </component>
 </project>
