@@ -1,16 +1,18 @@
 package br.com.senai.centroweg.wegone.repository;
 
+import br.com.senai.centroweg.wegone.exception.RepositoryException;
 import br.com.senai.centroweg.wegone.model.Categoria;
-import br.com.senai.centroweg.wegone.model.Orientacoes;
+import br.com.senai.centroweg.wegone.model.Orientacao;
 import br.com.senai.centroweg.wegone.util.Conexao;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class OrientacoesRepositoryImpl implements OrientacoesRepository{
     @Override
-    public Orientacoes cadastrar(Orientacoes orientacao) throws SQLException {
+    public Orientacao cadastrar(Orientacao orientacao){
         String query = """
                 INSERT INTO orientacoes
                 (titulo, conteudo, categoria)
@@ -23,17 +25,19 @@ public class OrientacoesRepositoryImpl implements OrientacoesRepository{
             stmt.setString(3, orientacao.getCategoria().toString());
             stmt.executeUpdate();
 
-            ResultSet rs = stmt.getGeneratedKeys();
-            if (rs.next()) {
-                orientacao.setId(rs.getInt(1));
-                return orientacao;
+            try(ResultSet rs = stmt.getGeneratedKeys()){
+                if (rs.next()) {
+                    orientacao.setId(rs.getInt(1));
+                }
             }
+            return orientacao;
+        } catch (SQLException e){
+            throw new RepositoryException("Erro no cadastro.", e);
         }
-        throw new SQLException("Erro no cadastro!");
     }
 
     @Override
-    public Orientacoes pesquisar(int id) throws SQLException {
+    public Optional<Orientacao> pesquisar(int id){
         String query = """
                 SELECT id,
                        titulo,
@@ -46,22 +50,26 @@ public class OrientacoesRepositoryImpl implements OrientacoesRepository{
             PreparedStatement stmt = conn.prepareStatement(query)){
             stmt.setInt(1, id);
 
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return new Orientacoes(
-                        rs.getInt("id"),
-                        rs.getString("titulo"),
-                        rs.getString("conteudo"),
-                        Categoria.valueOf(rs.getString("categoria"))
-                );
+            try(ResultSet rs = stmt.executeQuery()){
+                if (rs.next()) {
+                    return Optional.of(new Orientacao(
+                            rs.getInt("id"),
+                            rs.getString("titulo"),
+                            rs.getString("conteudo"),
+                            Categoria.valueOf(rs.getString("categoria")))
+                    );
+                }
+
             }
+            return Optional.empty();
+        } catch (SQLException e){
+            throw new RepositoryException("Erro ao consular orientação.", e);
         }
-        throw new SQLException("Orientação não encontrada.");
     }
 
     @Override
-    public List<Orientacoes> todas() throws SQLException {
-        List<Orientacoes> orientacoes = new ArrayList<>();
+    public List<Orientacao> todas() {
+        List<Orientacao> orientacoes = new ArrayList<>();
         String query = """
                 SELECT id,
                        titulo,
@@ -70,22 +78,25 @@ public class OrientacoesRepositoryImpl implements OrientacoesRepository{
                 FROM orientacoes
                 """;
         try(Connection conn = Conexao.conectar();
-            PreparedStatement stmt = conn.prepareStatement(query)){
-            ResultSet rs = stmt.executeQuery();
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery()){
+
             while(rs.next()){
-                orientacoes.add(new Orientacoes(
+                orientacoes.add(new Orientacao(
                         rs.getInt("id"),
                         rs.getString("titulo"),
                         rs.getString("conteudo"),
                         Categoria.valueOf(rs.getString("categoria"))
                 ));
             }
+        } catch (SQLException e){
+            throw new RepositoryException("Erro ao buscar informações.", e);
         }
         return orientacoes;
     }
 
     @Override
-    public void editar(Orientacoes orientacao) throws SQLException {
+    public void editar(Orientacao orientacao) {
         String query = """
                 UPDATE orientacoes
                 SET titulo = ?,
@@ -99,12 +110,18 @@ public class OrientacoesRepositoryImpl implements OrientacoesRepository{
             stmt.setString(2, orientacao.getConteudo());
             stmt.setString(3, orientacao.getCategoria().toString());
             stmt.setInt(4, orientacao.getId());
-            stmt.executeUpdate();
+            int linhas = stmt.executeUpdate();
+
+            if(linhas == 0){
+                throw new RepositoryException("Nenhuma orientação encontrada.");
+            }
+        } catch (SQLException e){
+            throw new RepositoryException("Erro ao editar orientação.", e);
         }
     }
 
     @Override
-    public void excluir(int id) throws SQLException {
+    public void excluir(int id) {
         String query = """
                 DELETE FROM orientacoes
                 WHERE id = ?
@@ -112,23 +129,13 @@ public class OrientacoesRepositoryImpl implements OrientacoesRepository{
         try(Connection conn = Conexao.conectar();
             PreparedStatement stmt = conn.prepareStatement(query)){
             stmt.setInt(1, id);
-            stmt.executeUpdate();
-        }
-    }
+            int linhas = stmt.executeUpdate();
 
-    @Override
-    public boolean existe(int id) throws SQLException {
-        String query = """
-                SELECT titulo
-                FROM orientacoes
-                WHERE id = ?
-                """;
-        try(Connection conn = Conexao.conectar();
-            PreparedStatement stmt = conn.prepareStatement(query)){
-            stmt.setInt(1, id);
-
-            ResultSet rs = stmt.executeQuery();
-            return rs.next() ? true : false;
+            if(linhas == 0){
+                throw new RepositoryException("Nenhuma orientação encontrada.");
+            }
+        } catch (SQLException e){
+            throw new RepositoryException("Erro ao excluir orientação.", e);
         }
     }
 }

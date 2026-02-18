@@ -1,22 +1,30 @@
 package br.com.senai.centroweg.wegone.model;
 
-public class Orientacoes {
+public class Orientacao {
     private int id;
     private String titulo;
     private String conteudo;
     private Categoria categoria;
 
-    public Orientacoes(String titulo, String conteudo, Categoria categoria) {
+    public Orientacao(String titulo, String conteudo, Categoria categoria) {
         this.titulo = titulo;
         this.conteudo = conteudo;
         this.categoria = categoria;
     }
 
-    public Orientacoes(int id, String titulo, String conteudo, Categoria categoria) {
+    public Orientacao(int id, String titulo, String conteudo, Categoria categoria) {
         this.id = id;
         this.titulo = titulo;
         this.conteudo = conteudo;
         this.categoria = categoria;
+    }
+
+    @Override
+    public String toString() {
+        return  "ID: " + id +
+                "\nTítulo:\n" + titulo +
+                "\nConteúdo:\n" + conteudo +
+                "\nCategoria: " + categoria;
     }
 
     public int getId() {

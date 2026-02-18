@@ -1,38 +1,36 @@
 package br.com.senai.centroweg.wegone.service;
 
-import br.com.senai.centroweg.wegone.model.Categoria;
-import br.com.senai.centroweg.wegone.model.Orientacoes;
+import br.com.senai.centroweg.wegone.exception.BusinessException;
+import br.com.senai.centroweg.wegone.model.Orientacao;
 import br.com.senai.centroweg.wegone.repository.OrientacoesRepository;
-import br.com.senai.centroweg.wegone.repository.OrientacoesRepositoryImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OrientacoesServiceImpl implements OrientacoesService {
-    private  final OrientacoesRepositoryImpl repository;
+    private  final OrientacoesRepository repository;
 
-    public OrientacoesServiceImpl(OrientacoesRepositoryImpl repository) {
+    public OrientacoesServiceImpl(OrientacoesRepository repository) {
         this.repository = repository;
     }
 
-
     @Override
-    public Orientacoes cadastrar(Orientacoes orientacao) {
+    public Orientacao cadastrar(Orientacao orientacao) {
         return repository.cadastrar(orientacao) ;
     }
 
     @Override
-    public Orientacoes pesquisar(int id) {
-        return repository.pesquisar(id);
+    public Orientacao pesquisar(int id) {
+        return repository.pesquisar(id)
+                .orElseThrow(() -> new BusinessException("Orientação não encontrada"));
     }
 
     @Override
-    public List<Orientacoes> todas() {
+    public List<Orientacao> todas() {
         return repository.todas();
     }
 
     @Override
-    public Orientacoes editar(Orientacoes orientacao, int id) {
+    public Orientacao editar(Orientacao orientacao, int id) {
         orientacao.setId(id);
         repository.editar(orientacao);
         return orientacao;
@@ -40,11 +38,6 @@ public class OrientacoesServiceImpl implements OrientacoesService {
 
     @Override
     public void excluir(int id) {
-        if(!repository.existe(id)){
-            throw new RuntimeException("O Id não coresponde a nenhum produto");
-        }
         repository.excluir(id);
     }
-
-
 }

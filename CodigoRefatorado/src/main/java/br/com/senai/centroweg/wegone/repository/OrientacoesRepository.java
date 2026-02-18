@@ -1,21 +1,19 @@
 package br.com.senai.centroweg.wegone.repository;
 
-import br.com.senai.centroweg.wegone.model.Orientacoes;
+import br.com.senai.centroweg.wegone.model.Orientacao;
 
-import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public interface OrientacoesRepository {
 
-    Orientacoes cadastrar(Orientacoes orientacao) throws SQLException;
+    Orientacao cadastrar(Orientacao orientacao);
 
-    Orientacoes pesquisar(int id) throws SQLException;
+    Optional<Orientacao> pesquisar(int id);
 
-    List<Orientacoes> todas() throws SQLException;
+    List<Orientacao> todas();
 
-    void editar(Orientacoes orientacao) throws SQLException;
+    void editar(Orientacao orientacao);
 
-    void excluir(int id) throws SQLException;
-
-    boolean existe(int id) throws SQLException;
+    void excluir(int id);
 }

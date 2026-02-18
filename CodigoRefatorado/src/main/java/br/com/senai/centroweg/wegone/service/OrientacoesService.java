@@ -1,22 +1,18 @@
 package br.com.senai.centroweg.wegone.service;
 
-import br.com.senai.centroweg.wegone.model.Orientacoes;
+import br.com.senai.centroweg.wegone.model.Orientacao;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface OrientacoesService {
 
-        Orientacoes cadastrar(Orientacoes orientacao);
+        Orientacao cadastrar(Orientacao orientacao);
 
-        Orientacoes pesquisar(int id);
+        Orientacao pesquisar(int id);
 
-        List<Orientacoes> todas();
+        List<Orientacao> todas();
 
-        Orientacoes editar(Orientacoes orientacao);
+        Orientacao editar(Orientacao orientacao, int id);
 
         void excluir(int id);
-
-
-
 }
