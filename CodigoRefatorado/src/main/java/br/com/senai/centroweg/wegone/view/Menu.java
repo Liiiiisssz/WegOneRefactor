@@ -111,7 +111,6 @@ public class Menu {
             System.out.println("Nova categoria (pressione ENTER para manter):");
             String categoriaStr = Sc.lerString();
 
-            // Mantém valor antigo se vazio
             if (titulo.isBlank()) {
                 titulo = existente.getTitulo();
             }
