@@ -10,9 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Menu {
-    private final MetodosCRUDImpl crud;
+    private final MetodosCRUDView crud;
 
-    public Menu(MetodosCRUDImpl crud) {
+    public Menu(MetodosCRUDView crud) {
         this.crud = crud;
     }
 

@@ -12,6 +12,7 @@ public class MetodosCRUDImpl implements MetodosCRUDView {
     public MetodosCRUDImpl(OrientacoesService service) {
         this.service = service;
     }
+
     @Override
     public void cadastrar(){
         System.out.println("CADASTRAR ORIENTAÇÃO");
@@ -27,6 +28,7 @@ public class MetodosCRUDImpl implements MetodosCRUDView {
                 titulo, conteudo, Categoria.valueOf(categoria)
         )));
     }
+
     @Override
     public void todas(){
         var lista = service.todas();
@@ -46,6 +48,7 @@ public class MetodosCRUDImpl implements MetodosCRUDView {
             System.out.println("---------------------------------");
         }
     }
+
     @Override
     public void pesquisar(){
         System.out.println("PESQUISAR ORIENTAÇÃO");
@@ -53,6 +56,7 @@ public class MetodosCRUDImpl implements MetodosCRUDView {
         int id = Sc.lerInt();
         System.out.println(service.pesquisar(id));
     }
+
     @Override
     public void editar(){
         System.out.println("EDITAR ORIENTAÇÃO");
@@ -102,6 +106,7 @@ public class MetodosCRUDImpl implements MetodosCRUDView {
             System.out.println(e.getMessage());
         }
     }
+
     @Override
     public void excluir(){
         System.out.println("EXCLUIR ORIENTAÇÃO");
