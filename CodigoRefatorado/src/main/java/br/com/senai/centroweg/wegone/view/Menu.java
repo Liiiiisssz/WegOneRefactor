@@ -51,7 +51,7 @@ public class Menu {
     }
 
     private void cadastrar(){
-        System.out.println("CADASTRAR ORIENTAÇÃO");
+        System.out.println("\n===== CADASTRAR ORIENTAÇÃO =====");
         System.out.println("Título:");
         String titulo = Sc.lerString();
         System.out.println("Conteúdo:");
@@ -85,14 +85,14 @@ public class Menu {
     }
 
     private void pesquisar(){
-        System.out.println("PESQUISAR ORIENTAÇÃO");
+        System.out.println("\n===== PESQUISAR ORIENTAÇÃO =====");
         System.out.println("ID da orientação:");
         int id = Sc.lerInt();
         System.out.println(service.pesquisar(id));
     }
 
     private void editar(){
-        System.out.println("EDITAR ORIENTAÇÃO");
+        System.out.println("\n===== EDITAR ORIENTAÇÃO =====");
         System.out.println("ID da orientação:");
         int id = Sc.lerInt();
 
@@ -140,7 +140,7 @@ public class Menu {
     }
 
     private void excluir(){
-        System.out.println("EXCLUIR ORIENTAÇÃO");
+        System.out.println("\n===== EXCLUIR ORIENTAÇÃO ======");
         System.out.println("ID da orientação:");
         int id = Sc.lerInt();
         try {
