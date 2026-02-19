@@ -1,4 +1,4 @@
-# WegOneRefactor - Documentação Completa
+# WegOneRefactor - Documentação
 
 ## 📋 Diagnóstico do Problema
 
@@ -7,37 +7,21 @@
 A estrutura anterior apresentava graves violações do OCP através de:
 
 1. **Múltiplas Camadas de if/else em Cascata**
-   - O código original continha estruturas condicionais aninhadas verificando `arquivo.equals("pt.json")`, `arquivo.equals("en.json")` e `arquivo.equals("de.json")`
    - Cada nova funcionalidade exigia modificação do código existente
    - Exemplo: Adicionar novo idioma significava editar a classe principal
 
 2. **Duplicação de Lógica**
    - Mesmo bloco de switch case repetido 3 vezes (uma para cada idioma)
-   - Métodos como `cadastrarManual()`, `cadastrarManualEN()`, `cadastrarManualDE()` duplicados para cada categoria
 
 3. **Responsabilidades Misturadas**
-   - Apresentação da UI (menus com caracteres especiais)
-   - Lógica de negócio (CRUD operations)
+   - Apresentação da UI
+   - Lógica de negócio
    - Controle de fluxo (navegação entre menus)
    - Gerenciamento de idiomas
 
-### Problemas Específicos Identificados
-
-```
-ANTES (Código Original):
-├── Main
-│   └── Lógica de Menu
-│       ├── Apresentação UI
-│       ├── Validação de Entrada
-│       ├── Seleção de Idioma
-│       ├── Roteamento de Operações
-│       └── Chamadas Diretas de Métodos CRUD
-```
-
 **Impactos:**
-- ❌ Difícil de testar (sem isolamento de responsabilidades)
+- ❌ Difícil de testar 
 - ❌ Difícil de manter (mudanças em um ponto afetam múltiplos lugares)
-- ❌ Impossível reutilizar componentes
 - ❌ Código frágil (um pequeno erro cascata por toda aplicação)
 
 ---
@@ -80,47 +64,11 @@ Cada camada tem uma responsabilidade única e bem definida:
 
 | Aspecto | Benefício |
 |---------|-----------|
-| **Testabilidade** | Cada camada pode ser testada isoladamente usando mocks |
 | **Manutenção** | Mudanças em uma camada não afetam outras |
 | **Reutilização** | Serviços podem ser usados por múltiplas views |
 | **Escalabilidade** | Fácil adicionar novas funcionalidades |
 | **Compreensão** | Novo dev entende fluxo rapidamente |
 
-#### 3. **Fluxo de Dados na Arquitetura**
-
-```
-Entrada do Usuário
-       ↓
-┌─────────────────────┐
-│  Menu               │  ← Apresenta opções
-│  (Camada View)      │
-└──────────┬──────────┘
-           │
-           ↓ (chama)
-┌─────────────────────┐
-│  MetodosCRUDImpl     │  ← Coordena ação
-│  (Camada View)      │
-└──────────┬──────────┘
-           │
-           ↓ (delega)
-┌─────────────────────┐
-│  OrientacoesService │  ← Valida e processa
-│  (Camada Service)   │
-└──────────┬──────────┘
-           │
-           ↓ (persiste)
-┌─────────────────────┐
-│  Repository         │  ← Acessa banco
-│  (Camada Data)      │
-└──────────┬──────────┘
-           │
-           ↓
-       [Banco de Dados]
-
-       Resposta retorna
-       através de todas
-       as camadas
-```
 
 ### Comparação: Antes vs Depois
 
@@ -212,7 +160,7 @@ private NovaCategoria novaCategoria;
 // Pronto! Sem modificar código existente.
 ```
 
-#### 2. **Mudar Banco de Dados (SQLite → PostgreSQL)**
+#### 2. **Mudar Banco de Dados (MySQL → PostgreSQL)**
 
 ❌ **Antes:**
 - Modificar 50+ linhas de SQL espalhadas no código
@@ -251,16 +199,6 @@ public Orientacao cadastrar(Orientacao orientacao) {
 }
 ```
 
-#### 4. **Matriz de Extensibilidade**
-
-| Mudança | Antes | Depois | Economia |
-|---------|-------|--------|----------|
-| Nova categoria | 50 linhas | 1 classe | 95% menos |
-| Novo banco dados | Reescrever tudo | 1 nova classe | Não toca existente |
-| Validação | Editar 3 métodos | 1 lugar | Isolado |
-| Novo idioma | Duplicar 500 linhas | Nada (genérico) | 100% |
-| Novo endpoint API | Reescrever UI | Reutilizar service | Service pronta |
-
 ---
 
 ## 💉 Conceitos de Injeção de Dependência
@@ -294,26 +232,7 @@ public class MetodosCRUDImpl {
 }
 ```
 
-#### 2. **Testabilidade**
-
-```java
-// Teste com Mock
-@Test
-public void testarCadastro() {
-    // Criar mock do service
-    OrientacoesService serviceMock = mock(OrientacoesService.class);
-    
-    // Injetar mock
-    MetodosCRUDImpl crud = new MetodosCRUDImpl(serviceMock);
-    
-    // Testar em isolamento
-    crud.cadastrar();
-    
-    verify(serviceMock).cadastrar(any());
-}
-```
-
-#### 3. **Flexibilidade**
+#### 2. **Flexibilidade**
 
 ```java
 // Mesma classe, diferentes comportamentos:
@@ -354,22 +273,6 @@ public class MetodosCRUDImpl implements MetodosCRUDView {
 }
 ```
 
-**Fluxo:**
-```
-Main 
-  ↓ (cria Service)
-  ↓
-Service 
-  ↓ (cria Repository)
-  ↓
-Repository 
-  ↓ (injetado para Service)
-  ↓
-Service 
-  ↓ (injetado para View)
-  ↓
-View (pronta para usar)
-```
 
 #### Exemplo 2: Service depende de Repository
 
@@ -388,98 +291,15 @@ public class OrientacoesServiceImpl implements OrientacoesService {
     }
 }
 ```
-
-### Diagrama de Injeção de Dependência
-
-```
-Estrutura de Injeção no Projeto:
-================================
-
-┌────────────────────────┐
-│       Main             │
-│   (Orquestrador)       │
-└────────────┬───────────┘
-             │
-    ┌────────┴────────┐
-    │                 │
-    ↓                 ↓
-┌──────────┐   ┌──────────────────┐
-│Repository│   │   Injeção de      │
-│Impl      │   │  OrientacoesRepo  │
-└────┬─────┘   │  no Service       │
-     │         └────────┬─────────┘
-     │                  │
-     └──────────┬───────┘
-                ↓
-         ┌─────────────┐
-         │   Service   │
-         │   Impl      │
-         └────┬────────┘
-              │
-              │ (Injeção de
-              │  OrientacoesService
-              │  no View)
-              ↓
-         ┌──────────────┐
-         │ MetodosCRUD  │
-         │    Impl      │
-         └─────┬────────┘
-               │
-               ↓
-          ┌────────────┐
-          │    Menu    │
-          │ (Utiliza)  │
-          └────────────┘
-```
-
-### Benefícios da DI no WegOneRefactor
-
-| Benefício | Exemplo |
-|-----------|---------|
-| **Testabilidade** | Mock de repository em testes unitários |
-| **Substituição** | Trocar SQLite por PostgreSQL sem editar código |
-| **Reutilização** | Service usado por API e CLI sem duplicação |
-| **Clareza** | Constructor deixa dependências explícitas |
-| **Inversão de Controle** | Main controla criação, classes apenas usam |
-
 ---
+## 👩‍💻 Autores
+**Elis Jasper**  
+📧 Email: elis_jasper@estudante.sesisenai.org.br  
+🔗 GitHub: [Liiiiisssz](https://github.com/Liiiiisssz)  
 
-## 📊 Comparação Estrutural
-
-### Métrica de Qualidade
-
-```
-Métrica                          Antes    Depois    Melhoria
-─────────────────────────────────────────────────────────
-Linhas em Main.java              500+     50        90% ↓
-Ciclomatic Complexity            35+      3         90% ↓
-Número de Responsabilidades      7        1         85% ↓
-Duplicação de Código             3x       0x        100% ↓
-Facilidade de Teste              1/10     9/10      800% ↑
-Tempo para Adicionar Feature     4h       15min     94% ↓
-```
-
----
-
-## 🎯 Conclusão
-
-### O Poder da Refatoração
-
-Esta refatoração demonstra como aplicar **princípios SOLID** (especialmente OCP e SRP) através de uma **arquitetura em camadas** com **Injeção de Dependência** transforma código:
-
-✅ **De frágil para robusto**
-✅ **De duplicado para elegante**  
-✅ **De inextensível para extensível**
-✅ **De difícil de testar para testável**
-✅ **De confuso para cristalino**
-
-### Próximos Passos
-
-1. **Adicionar Testes Unitários** - Aproveitar DI para mockar dependências
-2. **Usar Framework DI** - Spring ou Dagger para automação
-3. **Implementar Logging** - Sem tocar na lógica de negócio
-4. **Adicionar API REST** - Reutilizar services existentes
-5. **Documentação de API** - Service-first approach
+**Kael Luih de Araujo**  
+📧 Email: kael_araujo@estudante.sesisenai.org.br  
+🔗 GitHub: [KaelLuih](https://github.com/KaelLuih)  
 
 ---
 
